@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
               </div>
               <div className="flex">
                 <span className="text-slate-700 w-6 select-none">5</span>
-                <span className="pl-4 text-slate-400">philosophy:</span> <span className="text-white font-semibold">async</span> () <span className="text-white font-semibold">=></span> {'{'}
+                <span className="pl-4 text-slate-400">philosophy:</span> <span className="text-white font-semibold">async</span> () <span className="text-white font-semibold">{'=> '}</span>{`{`}
               </div>
               <div className="flex">
                 <span className="text-slate-700 w-6 select-none">6</span>
