@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
           <div className="mb-8 relative">
             <div className="w-24 h-24 md:w-32 md:h-32 rounded-full p-1 border border-white/10 bg-white/5 backdrop-blur-md relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop" 
+                src="/eldar.png" 
                 alt="Eldar Azamatov" 
                 className="w-full h-full rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
@@ -26,6 +26,7 @@ const Hero: React.FC = () => {
           
           <h1 className="text-5xl md:text-7xl font-display font-bold text-white leading-tight mb-6">
             Eldar Azamatov
+            <span className="block text-lg md:text-xl font-normal text-slate-500 mt-2">@hellohelldar</span>
           </h1>
           <h2 className="text-2xl md:text-3xl text-slate-400 font-light mb-8">
             Engineer · Founder · <span className="text-white font-medium border-b border-white/20 pb-1">Builder</span>
