@@ -43,45 +43,53 @@ const Highlights: React.FC = () => {
         </motion.h2>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative"
-            >
-              {/* White glow on hover */}
-              <div className="absolute inset-0 bg-white/10 rounded-2xl transform transition-transform group-hover:scale-[1.02] duration-300 opacity-0 group-hover:opacity-100 blur-sm"></div>
-              
-              <div className="relative h-full bg-card-bg border border-slate-800 p-8 rounded-2xl flex flex-col hover:border-white transition-colors z-10">
-                <div className={`w-12 h-12 rounded-xl bg-white text-black flex items-center justify-center mb-6 shadow-lg shadow-white/5`}>
-                  {project.logo ? (
-                    <img 
-                      src={project.logo} 
-                      alt={`${project.title} logo`}
-                      className="w-7 h-7 object-contain"
-                    />
-                  ) : project.icon ? (
-                    <project.icon size={24} />
-                  ) : null}
-                </div>
+          {projects.map((project, index) => {
+            const CardWrapper = project.link ? 'a' : 'div';
+            const cardProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative"
+              >
+                {/* White glow on hover */}
+                <div className="absolute inset-0 bg-white/10 rounded-2xl transform transition-transform group-hover:scale-[1.02] duration-300 opacity-0 group-hover:opacity-100 blur-sm"></div>
                 
-                <h3 className="text-2xl font-bold text-white mb-1 font-display">{project.title}</h3>
-                <div className="text-slate-400 text-sm font-medium mb-4">{project.role}</div>
-                
-                <p className="text-slate-400 mb-8 flex-grow leading-relaxed group-hover:text-slate-300 transition-colors">
-                  {project.desc}
-                </p>
-                
-                <div className="pt-6 border-t border-slate-800 flex items-center justify-between">
-                  <span className="text-white font-bold font-display text-lg">{project.stats}</span>
-                  <ExternalLink size={18} className="text-slate-500 group-hover:text-white transition-colors" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                <CardWrapper 
+                  {...cardProps}
+                  className={`relative h-full bg-card-bg border border-slate-800 p-8 rounded-2xl flex flex-col hover:border-white transition-colors z-10 ${project.link ? 'cursor-pointer block' : ''}`}
+                >
+                  <div className={`w-12 h-12 rounded-xl bg-white text-black flex items-center justify-center mb-6 shadow-lg shadow-white/5`}>
+                    {project.logo ? (
+                      <img 
+                        src={project.logo} 
+                        alt={`${project.title} logo`}
+                        className="w-7 h-7 object-contain"
+                      />
+                    ) : project.icon ? (
+                      <project.icon size={24} />
+                    ) : null}
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-1 font-display">{project.title}</h3>
+                  <div className="text-slate-400 text-sm font-medium mb-4">{project.role}</div>
+                  
+                  <p className="text-slate-400 mb-8 flex-grow leading-relaxed group-hover:text-slate-300 transition-colors">
+                    {project.desc}
+                  </p>
+                  
+                  <div className="pt-6 border-t border-slate-800 flex items-center justify-between">
+                    <span className="text-white font-bold font-display text-lg">{project.stats}</span>
+                    {project.link && <ExternalLink size={18} className="text-slate-500 group-hover:text-white transition-colors" />}
+                  </div>
+                </CardWrapper>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="mt-16 text-center">
