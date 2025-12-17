@@ -112,6 +112,7 @@ const Channels: React.FC = () => {
       </div>
     </section>
   );
+};
 
 export default Channels;
 
