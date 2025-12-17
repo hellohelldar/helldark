@@ -9,7 +9,8 @@ const Highlights: React.FC = () => {
       role: "CTO & Co-Founder",
       desc: "Helping engineers from emerging markets land global tech jobs. Built 4 core internal platforms from scratch for education, payments, and analytics.",
       stats: "Global Impact",
-      icon: Users,
+      icon: null,
+      logo: "/outtalent_logo.png",
     },
     {
       title: "Tonmons",
@@ -54,7 +55,15 @@ const Highlights: React.FC = () => {
               
               <div className="relative h-full bg-card-bg border border-slate-800 p-8 rounded-2xl flex flex-col hover:border-white transition-colors z-10">
                 <div className={`w-12 h-12 rounded-xl bg-white text-black flex items-center justify-center mb-6 shadow-lg shadow-white/5`}>
-                  <project.icon size={24} />
+                  {project.logo ? (
+                    <img 
+                      src={project.logo} 
+                      alt={`${project.title} logo`}
+                      className="w-7 h-7 object-contain"
+                    />
+                  ) : project.icon ? (
+                    <project.icon size={24} />
+                  ) : null}
                 </div>
                 
                 <h3 className="text-2xl font-bold text-white mb-1 font-display">{project.title}</h3>

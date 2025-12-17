@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Channels from './components/Channels';
 import Experience from './components/Experience';
 import WhatIDo from './components/WhatIDo';
 import Highlights from './components/Highlights';
@@ -48,6 +49,7 @@ const App: React.FC = () => {
       <main className="relative z-10 flex flex-col gap-0">
         <Hero />
         <About />
+        <Channels />
         <Experience />
         <WhatIDo />
         <Highlights />
