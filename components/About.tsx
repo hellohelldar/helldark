@@ -7,7 +7,7 @@ const About: React.FC = () => {
     { label: 'Years Exp', value: '5+', icon: Code },
     { label: 'Game Plays', value: '30M+', icon: Users },
     { label: 'Startups', value: '3', icon: Rocket },
-    { label: 'MAU Peak', value: '10k', icon: Globe },
+    { label: 'MAU Peak', value: '1M+', icon: Globe },
   ];
 
   return (

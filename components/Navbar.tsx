@@ -94,10 +94,10 @@ const Navbar: React.FC = () => {
               ))}
             </ul>
             <div className="mt-12 flex gap-6">
-              <a href="https://github.com" className="text-slate-400 hover:text-white">
+              <a href="https://github.com/hellohelldar" className="text-slate-400 hover:text-white">
                 <Github size={24} />
               </a>
-              <a href="https://linkedin.com" className="text-slate-400 hover:text-white">
+              <a href="https://www.linkedin.com/in/eldar-azamatov/" className="text-slate-400 hover:text-white">
                 <Linkedin size={24} />
               </a>
               <a href="mailto:email@example.com" className="text-slate-400 hover:text-white">

@@ -109,70 +109,9 @@ const Channels: React.FC = () => {
             );
           })}
         </div>
-
-        {/* Featured Telegram Post Preview */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-8"
-        >
-          <a 
-            href="https://t.me/eldargamedev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group block"
-          >
-            <div className="relative bg-[#0a0a0a] border border-slate-800/80 hover:border-[#2AABEE]/40 rounded-2xl p-6 transition-all duration-300 overflow-hidden">
-              {/* Telegram blue accent line */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2AABEE] to-transparent opacity-50" />
-              
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-[#2AABEE] rounded-full flex items-center justify-center">
-                    <Send size={18} className="text-white" />
-                  </div>
-                </div>
-                
-                <div className="flex-grow min-w-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="font-medium text-white">eldargamedev</span>
-                    <span className="text-xs text-slate-600">•</span>
-                    <span className="text-xs text-slate-500">Latest post</span>
-                  </div>
-                  
-                  <p className="text-slate-300 text-sm leading-relaxed mb-3">
-                    Check out my Telegram channel for the latest updates on game development, 
-                    startup journey, and tech insights. Join the conversation! 🎮🚀
-                  </p>
-                  
-                  <div className="flex items-center gap-4 text-xs text-slate-500">
-                    <span className="flex items-center gap-1">
-                      <MessageCircle size={14} />
-                      Join discussion
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Users size={14} />
-                      Community
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex-shrink-0 hidden sm:block">
-                  <span className="text-xs text-slate-600 group-hover:text-[#2AABEE] transition-colors flex items-center gap-1">
-                    Open in Telegram
-                    <ExternalLink size={12} />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
-};
 
 export default Channels;
 
