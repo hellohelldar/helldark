@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/eldar-azamatov/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="px-8 py-3 bg-transparent hover:bg-white/5 text-white font-medium rounded-lg border border-slate-700 hover:border-white transition-all"

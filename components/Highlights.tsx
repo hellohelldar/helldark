@@ -11,20 +11,22 @@ const Highlights: React.FC = () => {
       stats: "Global Impact",
       icon: null,
       logo: "/outtalent_logo.png",
+      link: "https://outtalent.com",
     },
     {
-      title: "Tonmons",
+      title: "Supernatural",
       role: "Founder",
-      desc: "Web3 game on TON blockchain. Scaled to 10k Monthly Active Users at peak. Built entire infrastructure solo.",
-      stats: "10k MAU",
+      desc: "Built and led a venture studio focused on launching experimental games and tech products from Central Asia. Supernatural also served as one of the region’s first game accelerators, nurturing early-stage projects and indie teams—especially in the horror and strategy genres.",
+      stats: "3 projects launched",
       icon: Trophy,
     },
     {
       title: "Roblox Games",
-      role: "Lead Developer",
+      role: "Indie Game Developer",
       desc: "Created multiple games reaching over 30 million total plays. Learned the fundamentals of product engagement and iteration.",
       stats: "30M+ Plays",
       icon: Star,
+      link: "https://www.roblox.com/users/190090631/profile",
     }
   ];
 

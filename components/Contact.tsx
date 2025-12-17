@@ -4,10 +4,10 @@ import { Mail, Linkedin, Github, Instagram, ArrowUpRight } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const links = [
-    { name: 'Email', icon: Mail, href: 'mailto:contact@eldar.com' },
-    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com' },
-    { name: 'GitHub', icon: Github, href: 'https://github.com' },
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com' },
+    { name: 'Email', icon: Mail, href: 'mailto:helldar@outtalent.com' },
+    { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/eldar-azamatov/' },
+    { name: 'GitHub', icon: Github, href: 'https://github.com/hellohelldar' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/hellohelldar/' },
   ];
 
   return (
