@@ -87,9 +87,9 @@ const Hero: React.FC = () => {
 
       {/* Bottom status bar */}
       <div 
-        className={`px-6 py-8 transition-all duration-700 delay-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+        className={`py-8 transition-all duration-700 delay-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}
       >
-        <div className="container mx-auto flex justify-between items-center">
+        <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-sm text-white">Open for opportunities</span>

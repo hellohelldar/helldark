@@ -42,7 +42,7 @@ const About: React.FC = () => {
     { value: '8+', label: 'Years Building' },
     { value: '30M+', label: 'Game Plays' },
     { value: '3', label: 'Companies' },
-    { value: '100+', label: 'Engineers Helped' },
+    { value: '200+', label: 'Engineers Helped' },
   ];
 
   const currentTechs = techCategories.find(c => c.id === activeCategory)?.techs || [];

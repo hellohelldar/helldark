@@ -33,6 +33,12 @@ const Experience: React.FC = () => {
       period: "2020 — 2023",
       role: "Software Engineer",
       description: "Built information portal for entrepreneurs. Accepted into Accelerate Prosperity."
+    },
+    {
+      company: "Mancho",
+      period: "Nov 2021 — Feb 2022",
+      role: "Product Manager Intern",
+      description: "Briefly explored junior product management before returning to software engineering and game development."
     }
   ];
 
@@ -72,6 +78,13 @@ const Experience: React.FC = () => {
                 </div>
                 <div className="md:col-span-6">
                   <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                    {role.logo && (
+                      <img 
+                        src={role.logo} 
+                        alt={`${role.company} logo`} 
+                        className="w-8 h-8 object-contain rounded"
+                      />
+                    )}
                     {role.company}
                     {role.current && (
                       <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
