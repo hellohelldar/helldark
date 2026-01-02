@@ -1,113 +1,82 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, Youtube, Users, Play, ExternalLink, MessageCircle } from 'lucide-react';
+import { Send, Youtube, ArrowUpRight } from 'lucide-react';
 
 const Channels: React.FC = () => {
   const channels = [
     {
-      platform: "Telegram",
-      name: "@eldargamedev",
-      description: "Game development insights, startup journey, and tech thoughts in Russian",
+      name: "Telegram",
+      handle: "@eldargamedev",
+      desc: "Raw thoughts on startups, game dev, and engineering.",
       url: "https://t.me/eldargamedev",
       icon: Send,
-      color: "from-[#2AABEE]/20 to-[#2AABEE]/5",
-      borderColor: "border-[#2AABEE]/30 hover:border-[#2AABEE]/60",
-      iconBg: "bg-[#2AABEE]",
-      stats: "Join the community",
-      cta: "Open Telegram"
+      stats: "2.5k+"
     },
     {
-      platform: "YouTube",
-      name: "@HellDarkov",
-      description: "Video content about game development, tech, and creative projects",
+      name: "YouTube",
+      handle: "@HellDarkov",
+      desc: "Devlogs, technical breakdowns, and showcases.",
       url: "https://www.youtube.com/@HellDarkov",
       icon: Youtube,
-      color: "from-[#FF0000]/15 to-[#FF0000]/5",
-      borderColor: "border-[#FF0000]/20 hover:border-[#FF0000]/50",
-      iconBg: "bg-[#FF0000]",
-      stats: "Watch videos",
-      cta: "Subscribe"
+      stats: "1.2k+"
     }
   ];
 
   return (
-    <section className="py-20 bg-dark-bg relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/[0.02] blur-[100px] rounded-full pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-32 relative">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-16"
         >
-          <span className="text-xs font-mono text-slate-600 tracking-widest uppercase mb-3 block">
-            Connect
-          </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-3">
-            Follow My Journey
-          </h2>
-          <p className="text-slate-400 max-w-lg">
-            Get behind-the-scenes content, updates, and insights on game development and tech.
-          </p>
+          <p className="text-sm tracking-widest text-accent uppercase mb-4">Channels</p>
+          <h2 className="text-4xl font-bold text-white">Follow the journey</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {channels.map((channel, index) => {
-            const Icon = channel.icon;
-            
-            return (
-              <motion.a
-                key={channel.platform}
-                href={channel.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className={`group relative bg-gradient-to-br ${channel.color} border ${channel.borderColor} rounded-2xl p-6 transition-all duration-300 overflow-hidden`}
-              >
-                {/* Shine effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`w-12 h-12 ${channel.iconBg} rounded-xl flex items-center justify-center shadow-lg`}>
-                      <Icon size={24} className="text-white" />
-                    </div>
-                    <ExternalLink size={18} className="text-slate-600 group-hover:text-white transition-colors" />
-                  </div>
+          {channels.map((channel, idx) => (
+            <motion.a
+              key={idx}
+              href={channel.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="group p-10 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all relative"
+            >
+              <div className="absolute top-10 right-10">
+                <ArrowUpRight 
+                  size={24} 
+                  className="text-white/30 group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" 
+                />
+              </div>
 
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-                        {channel.platform}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-display font-bold text-white mb-2">
-                      {channel.name}
-                    </h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">
-                      {channel.description}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                    <span className="text-xs text-slate-500">
-                      {channel.stats}
-                    </span>
-                    <span className="text-sm font-medium text-white group-hover:underline flex items-center gap-1">
-                      {channel.cta}
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
-                    </span>
-                  </div>
+              <div className="flex items-start gap-6 mb-8">
+                <div className="p-4 bg-accent/10 border border-accent/30 text-accent">
+                  <channel.icon size={28} />
                 </div>
-              </motion.a>
-            );
-          })}
+                <div>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">
+                    {channel.name}
+                  </h3>
+                  <p className="text-accent">{channel.handle}</p>
+                </div>
+              </div>
+
+              <p className="text-white text-lg leading-relaxed mb-8">
+                {channel.desc}
+              </p>
+
+              <div className="flex items-center gap-2">
+                <span className="text-4xl font-bold text-accent">{channel.stats}</span>
+                <span className="text-sm text-white uppercase tracking-widest">Subscribers</span>
+              </div>
+            </motion.a>
+          ))}
         </div>
       </div>
     </section>
@@ -115,4 +84,3 @@ const Channels: React.FC = () => {
 };
 
 export default Channels;
-

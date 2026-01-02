@@ -3,29 +3,48 @@
 /* Custom theme */
 @theme {
   --font-family-sans: 'Inter', sans-serif;
-  --font-family-display: 'Space Grotesk', sans-serif;
-  
-  --color-accent: #ffffff;
-  --color-accent-dark: #d4d4d4;
-  --color-dark-bg: #000000;
-  --color-card-bg: #0a0a0a;
-  
+  --font-family-display: 'Inter', sans-serif;
+  /* Unifying font for a cleaner look, or use a techy serif if preferred */
+
+  --color-accent: #2eff71;
+  /* Neon Green */
+  --color-accent-dim: #1ea34c;
+  --color-dark-bg: #050a06;
+  /* Deep Green-Black for richness */
+  --color-card-bg: #0a110c;
+  --color-tech-line: #1a2e1f;
   --animate-pulse-slow: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 /* Custom scrollbar for a cleaner look */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #050505;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #333333;
-  border-radius: 4px;
+  border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #666666;
+  background: #555555;
 }
 
 /* Hide scrollbar utility */
@@ -33,6 +52,21 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: #e5e5e5;
+}
+
+.pattern-diagonal-lines {
+  background-image: repeating-linear-gradient(45deg,
+      currentColor 0,
+      currentColor 1px,
+      transparent 0,
+      transparent 50%);
+  background-size: 10px 10px;
 }

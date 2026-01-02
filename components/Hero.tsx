@@ -1,112 +1,107 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+
+const roles = ['Engineer', 'Founder', 'Builder'];
 
 const Hero: React.FC = () => {
+  const [currentRole, setCurrentRole] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const interval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Profile Picture */}
-          <div className="mb-8 relative">
-            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full p-1 border border-white/10 bg-white/5 backdrop-blur-md relative z-10">
+    <section className="relative min-h-screen flex flex-col text-white overflow-hidden">
+      
+      {/* Main content */}
+      <div className="flex-1 container mx-auto px-6 flex flex-col justify-center pt-24">
+        
+        <div className="max-w-6xl">
+          
+          {/* Profile badge */}
+          <div 
+            className={`inline-flex items-center gap-4 mb-12 px-4 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          >
+            <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-accent/50">
               <img 
                 src="/eldar.png" 
                 alt="Eldar Azamatov" 
-                className="w-full h-full rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                className="w-full h-full object-cover"
               />
             </div>
-            {/* Glow behind profile */}
-            <div className="absolute top-1/2 left-12 md:left-16 -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-32 md:h-32 bg-white/20 blur-[50px] rounded-full pointer-events-none"></div>
+            <div className="pr-2">
+              <p className="text-sm font-medium text-white">Eldar Azamatov</p>
+              <p className="text-xs text-accent">Bishkek, Kyrgyzstan</p>
+            </div>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl font-display font-bold text-white leading-tight mb-6">
-            Eldar Azamatov
-            <span className="block text-lg md:text-xl font-normal text-slate-500 mt-2">@hellohelldar</span>
-          </h1>
-          <h2 className="text-2xl md:text-3xl text-slate-400 font-light mb-8">
-            Engineer · Founder · <span className="text-white font-medium border-b border-white/20 pb-1">Builder</span>
-          </h2>
-          
-          <p className="text-lg text-slate-400 max-w-xl mb-10 leading-relaxed">
-            I build technology, companies, and communities — from game studios with millions of players to platforms helping engineers from emerging markets land global tech jobs.
-          </p>
-          
-          <div className="flex flex-wrap gap-4">
-            <a 
-              href="#contact" 
-              className="px-8 py-3 bg-white hover:bg-slate-200 text-black font-bold rounded-lg transition-all flex items-center gap-2 group"
+
+          {/* Main headline */}
+          <div className="mb-8">
+            <h1 
+              key={currentRole}
+              className="text-[clamp(4rem,15vw,12rem)] font-bold leading-[0.85] tracking-tighter text-white"
             >
-              Contact me 
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
+              {roles[currentRole]}
+            </h1>
+          </div>
+
+          {/* Subtext */}
+          <p 
+            className={`text-xl md:text-2xl text-white max-w-2xl leading-relaxed mb-12 transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          >
+            Building high-performance systems and scalable products. Currently CTO at{' '}
             <a 
-              href="https://www.linkedin.com/in/eldar-azamatov/" 
+              href="https://outtalent.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-8 py-3 bg-transparent hover:bg-white/5 text-white font-medium rounded-lg border border-slate-700 hover:border-white transition-all"
+              className="text-accent hover:underline"
             >
-              LinkedIn
+              Outtalent
+            </a>
+            .
+          </p>
+
+          {/* CTAs */}
+          <div 
+            className={`flex flex-wrap items-center gap-4 transition-all duration-700 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          >
+            <a 
+              href="#highlights" 
+              className="group px-8 py-4 bg-white text-black font-semibold hover:bg-accent transition-colors duration-300"
+            >
+              View My Work
+            </a>
+            <a 
+              href="#contact" 
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-medium border border-white/20 hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Get in Touch
             </a>
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative hidden md:block"
-        >
-          <div className="absolute inset-0 bg-white/5 blur-[100px] rounded-full"></div>
-          <div className="relative bg-[#050505] border border-slate-800 rounded-xl p-6 shadow-2xl">
-            <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-4">
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-              <div className="ml-auto text-xs text-slate-600 font-mono">portfolio.tsx</div>
-            </div>
-            {/* Monochrome Syntax Highlighting */}
-            <div className="font-mono text-sm text-slate-300 space-y-2">
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">1</span>
-                <span className="text-white font-semibold">const</span> <span className="text-slate-300">Eldar</span> = <span className="text-white font-semibold">new</span> <span className="text-slate-300">Engineer</span>({'{'}
-              </div>
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">2</span>
-                <span className="pl-4 text-slate-400">focus:</span> <span className="text-slate-200">['Product', 'Scale', 'Impact']</span>,
-              </div>
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">3</span>
-                <span className="pl-4 text-slate-400">currentRole:</span> <span className="text-slate-200">'CTO @ Outtalent'</span>,
-              </div>
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">4</span>
-                <span className="pl-4 text-slate-400">mission:</span> <span className="text-slate-200">'Empower global talent'</span>,
-              </div>
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">5</span>
-                <span className="pl-4 text-slate-400">philosophy:</span> <span className="text-white font-semibold">async</span> () <span className="text-white font-semibold">{'=> '}</span>{`{`}
-              </div>
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">6</span>
-                <span className="pl-8"><span className="text-white font-semibold">return</span> <span className="text-slate-200">"Build fast, iterate relentlessly"</span>;</span>
-              </div>
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">7</span>
-                <span className="pl-4">{'}'}</span>
-              </div>
-              <div className="flex">
-                <span className="text-slate-700 w-6 select-none">8</span>
-                <span>{'}'};</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </div>
+
+      {/* Bottom status bar */}
+      <div 
+        className={`px-6 py-8 transition-all duration-700 delay-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-sm text-white">Open for opportunities</span>
+          </div>
+          <div className="hidden md:flex items-center gap-8 text-sm text-white">
+            <span>30M+ Plays</span>
+            <span>8+ Years</span>
+            <span>3 Companies</span>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 };

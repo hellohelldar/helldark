@@ -3,44 +3,69 @@ import { motion } from 'framer-motion';
 
 const Philosophy: React.FC = () => {
   const principles = [
-    { text: "Create first, improve later", delay: 0 },
-    { text: "Simplicity over cleverness", delay: 100 },
-    { text: "Ship → Learn → Iterate", delay: 200 },
-    { text: "Talk to users early and often", delay: 300 },
-    { text: "Tech exists to create value, not complexity", delay: 400 }
+    "Create first, improve later.",
+    "Simplicity over cleverness.",
+    "Ship → Learn → Iterate.",
+    "Talk to users early.",
+    "Tech exists to create value."
   ];
 
   return (
-    <section id="philosophy" className="py-20 bg-slate-950 border-y border-slate-900/50">
-      <div className="container mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-sm font-bold tracking-widest text-accent uppercase mb-12">Engineering Philosophy</h2>
+    <section id="philosophy" className="py-32 relative">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-20">
           
-          <div className="max-w-3xl mx-auto space-y-8">
-            {principles.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative"
-              >
-                <h3 className="text-2xl md:text-3xl font-display font-medium text-slate-300 hover:text-white transition-colors cursor-default">
-                  {item.text}
-                </h3>
-              </motion.div>
-            ))}
-          </div>
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm tracking-widest text-accent uppercase mb-8">Philosophy</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-8">
+              Core Values
+            </h2>
+            <p className="text-white text-xl leading-relaxed mb-12">
+              Engineering is more than code. It's about solving problems with clarity, empathy, and pragmatism.
+            </p>
 
-          <p className="mt-16 text-slate-500 max-w-2xl mx-auto text-lg">
-            I strongly believe that <span className="text-white">impact beats elegance</span>, and that the best engineers are those who understand both technology and people.
-          </p>
-        </motion.div>
+            <div className="p-8 bg-white/5 backdrop-blur-sm border border-accent/30">
+              <p className="text-white text-xl italic leading-relaxed">
+                "The best engineers I know are the ones who understand that their code is a means to an end, not the end itself."
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right - Principles */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="lg:pt-16"
+          >
+            <div className="space-y-0">
+              {principles.map((principle, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group flex items-center justify-between py-6 border-b border-white/10 hover:bg-white/5 transition-colors px-6 -mx-6"
+                >
+                  <h3 className="text-xl text-white group-hover:text-accent transition-colors">
+                    {principle}
+                  </h3>
+                  <span className="text-4xl font-bold text-accent/30 group-hover:text-accent transition-colors font-mono">
+                    0{index + 1}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );

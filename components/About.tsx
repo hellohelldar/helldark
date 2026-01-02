@@ -1,82 +1,86 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Users, Rocket, Globe } from 'lucide-react';
 
 const About: React.FC = () => {
   const stats = [
-    { label: 'Years Exp', value: '5+', icon: Code },
-    { label: 'Game Plays', value: '30M+', icon: Users },
-    { label: 'Startups', value: '3', icon: Rocket },
-    { label: 'MAU Peak', value: '1M+', icon: Globe },
+    { value: '8+', label: 'Years Building' },
+    { value: '30M+', label: 'Game Plays' },
+    { value: '3', label: 'Companies' },
+    { value: '100+', label: 'Engineers Helped' },
   ];
 
   return (
-    <section id="about" className="py-24 bg-dark-bg relative">
+    <section id="about" className="py-32 relative">
       <div className="container mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
-          <h2 className="text-4xl font-display font-bold text-white mb-12 flex items-center gap-4">
-            About Me
-            <div className="h-px bg-slate-800 flex-grow"></div>
-          </h2>
+        <div className="grid lg:grid-cols-2 gap-20">
 
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="md:col-span-2 space-y-6 text-slate-400 leading-relaxed text-lg">
+          {/* Left Column */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-sm tracking-widest text-accent uppercase mb-8">About</p>
+
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-8">
+              I build systems that bridge technology and human potential.
+            </h2>
+
+            <div className="space-y-6 text-lg text-white leading-relaxed">
               <p>
-                I’m a software engineer and entrepreneur from Kyrgyzstan with <span className="text-slate-200 font-medium">5+ years of hands-on experience</span> building real products end-to-end: from idea and MVP to scaling systems used by thousands of people.
+                I'm a software engineer and entrepreneur from Kyrgyzstan. My journey began in game development, where I learned that performance isn't just about code—it's about user experience.
               </p>
               <p>
-                I started my journey as a self-taught game developer, creating games on Roblox that reached <span className="text-accent font-medium">30+ million plays</span>. That experience shaped how I think about engineering: <span className="text-slate-200 italic">build fast, test with users, iterate relentlessly</span>.
+                Scaling games to <span className="text-accent font-semibold">30 million plays</span> taught me concurrency, distributed systems, and rapid iteration.
               </p>
               <p>
-                Currently, I serve as <span className="text-white font-medium">CTO & Co-Founder at Outtalent</span>, where we help engineers from emerging markets land global tech jobs.
+                Now, as <span className="text-accent font-semibold">CTO of Outtalent</span>, I build platforms that help engineers change their careers.
               </p>
-              
-              <div className="pt-6">
-                <h3 className="text-white font-display font-semibold mb-4">Today I focus on:</h3>
-                <ul className="space-y-3">
-                  {[
-                    'Building scalable engineering systems',
-                    'Launching products fast without over-engineering',
-                    'Leading small, high-impact teams',
-                    'Creating opportunities for engineers in emerging markets'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
+          </motion.div>
 
-            <div className="space-y-6">
+          {/* Right Column - Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:pt-16"
+          >
+            <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card-bg p-6 rounded-xl border border-slate-800 hover:border-accent/50 transition-colors group"
+                <div 
+                  key={index} 
+                  className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 group hover:border-accent/50 transition-colors"
                 >
-                  <div className="flex items-center gap-4 mb-2">
-                    <div className="p-2 rounded-lg bg-slate-900 group-hover:bg-accent/10 transition-colors">
-                      <stat.icon className="text-accent" size={20} />
-                    </div>
-                    <span className="text-sm text-slate-500 font-medium uppercase tracking-wider">{stat.label}</span>
+                  <div className="text-5xl font-bold text-accent mb-2">
+                    {stat.value}
                   </div>
-                  <div className="text-3xl font-bold text-white font-display pl-2">{stat.value}</div>
-                </motion.div>
+                  <div className="text-sm uppercase tracking-widest text-white">
+                    {stat.label}
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
-        </motion.div>
+
+            {/* Tech stack */}
+            <div className="mt-12">
+              <p className="text-sm tracking-widest text-accent uppercase mb-4">Stack</p>
+              <div className="flex flex-wrap gap-3">
+                {['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'AWS', 'Lua'].map(tech => (
+                  <span 
+                    key={tech} 
+                    className="px-4 py-2 bg-white/5 border border-white/10 text-sm text-white hover:border-accent hover:text-accent transition-colors"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
