@@ -1,10 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, ArrowUpRight, Rocket, Compass, Video, Database, Code, TrendingUp, Briefcase, Sparkles } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Highlights: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'engineering' | 'impact'>('engineering');
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const mainCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Main card reveal animation
+      if (mainCardRef.current) {
+        gsap.from(mainCardRef.current, {
+          y: 100,
+          opacity: 0,
+          scale: 0.95,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: mainCardRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        });
+
+        // Add a glowing border effect on scroll
+        gsap.to(mainCardRef.current, {
+          boxShadow: '0 0 60px rgba(46, 255, 113, 0.1)',
+          scrollTrigger: {
+            trigger: mainCardRef.current,
+            start: 'top 60%',
+            end: 'bottom 40%',
+            scrub: 1,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Magnetic hover effect for product cards
+  const handleProductHover = (e: React.MouseEvent<HTMLDivElement>, idx: number) => {
+    setHoveredProduct(idx);
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    gsap.to(card, {
+      rotateX: -y * 0.05,
+      rotateY: x * 0.05,
+      transformPerspective: 1000,
+      duration: 0.3,
+      ease: 'power2.out',
+    });
+  };
+
+  const handleProductLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    setHoveredProduct(null);
+    gsap.to(e.currentTarget, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.5,
+      ease: 'elastic.out(1, 0.5)',
+    });
+  };
 
   const products = [
     { name: 'LaunchPad', desc: 'Gamified learning platform', icon: Rocket, color: 'from-orange-500/20 to-yellow-500/20' },
@@ -26,7 +92,7 @@ const Highlights: React.FC = () => {
   ];
 
   return (
-    <section id="highlights" className="py-32 relative">
+    <section ref={sectionRef} id="highlights" className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -48,10 +114,8 @@ const Highlights: React.FC = () => {
         </motion.div>
 
         {/* Main Project - Outtalent */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
+          ref={mainCardRef}
           className="bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-sm border border-white/10 mb-20 shadow-2xl shadow-black/20 overflow-hidden"
         >
           {/* Header */}
@@ -174,13 +238,12 @@ const Highlights: React.FC = () => {
                       {products.map((product, idx) => {
                         const IconComponent = product.icon;
                         return (
-                          <motion.div 
+                          <div 
                             key={idx}
-                            onMouseEnter={() => setHoveredProduct(idx)}
-                            onMouseLeave={() => setHoveredProduct(null)}
-                            whileHover={{ y: -4, scale: 1.01 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            onMouseMove={(e) => handleProductHover(e, idx)}
+                            onMouseLeave={handleProductLeave}
                             className={`relative p-6 bg-gradient-to-br ${product.color} border border-white/10 hover:border-accent/50 transition-all duration-300 group cursor-default overflow-hidden`}
+                            style={{ transformStyle: 'preserve-3d' }}
                           >
                             {/* Gradient glow on hover */}
                             <motion.div 
@@ -206,7 +269,7 @@ const Highlights: React.FC = () => {
                             
                             {/* Corner accent */}
                             <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </motion.div>
+                          </div>
                         );
                       })}
                     </div>
@@ -285,7 +348,7 @@ const Highlights: React.FC = () => {
               </AnimatePresence>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Secondary Projects */}
         <div className="grid md:grid-cols-2 gap-6">
