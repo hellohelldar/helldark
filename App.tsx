@@ -82,16 +82,47 @@ const App: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <img
-            src="/eldar.png"
-            alt="Eldar Azamatov"
-            className="h-16 w-16 rounded-full object-cover"
-          />
+          <div className="flex items-center gap-4">
+            <img
+              src="/eldar.png"
+              alt="Eldar Azamatov"
+              className="h-16 w-16 flex-shrink-0 rounded-2xl object-cover ring-1 ring-white/10"
+            />
+            <div className="min-w-0">
+              <h1 className="text-xl font-semibold tracking-tight">Eldar Azamatov</h1>
+              <p className="mt-1 text-sm font-medium text-white/80">
+                Founder &middot; Software Engineer &middot; Cursor Ambassador
+              </p>
+            </div>
+          </div>
 
-          <h1 className="mt-5 text-xl font-semibold tracking-tight">Eldar Azamatov</h1>
-          <p className="mt-1.5 text-sm leading-relaxed text-white/50">
-            Software engineer and founder.
-          </p>
+          <div className="relative mt-7 pl-4">
+            <span className="absolute bottom-2 left-[3px] top-2 w-px bg-white/10" />
+            <div className="space-y-4">
+              <div className="relative">
+                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-accent ring-4 ring-dark-bg" />
+                <p className="font-mono text-xs text-accent">2026&ndash;Now</p>
+                <p className="mt-0.5 text-sm leading-relaxed text-white/75">
+                  Building AI-native companies, Cursor Ambassador
+                </p>
+              </div>
+              <div className="relative">
+                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-accent ring-4 ring-dark-bg" />
+                <p className="font-mono text-xs text-accent">2023&ndash;2026</p>
+                <p className="mt-0.5 text-sm leading-relaxed text-white/75">
+                  First Engineering Hire &rarr; Ex Co-Founder &amp; CTO at Outtalent
+                  (Kyrgyzstan&apos;s first YC-backed startup)
+                </p>
+              </div>
+              <div className="relative">
+                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-accent ring-4 ring-dark-bg" />
+                <p className="font-mono text-xs text-accent">2019&ndash;2023</p>
+                <p className="mt-0.5 text-sm leading-relaxed text-white/75">
+                  30M+ Roblox game plays &middot; 1M+ MAU
+                </p>
+              </div>
+            </div>
+          </div>
 
           <nav className="mt-9 flex flex-col">
             {profiles.map((p) => (
