@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { SmokeBackground } from '@/components/ui/spooky-smoke-animation';
 
 type Profile = {
   name: string;
@@ -75,8 +76,15 @@ const profiles: Profile[] = [
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-dark-bg text-white antialiased selection:bg-white selection:text-black">
-      <main className="mx-auto flex min-h-screen w-full max-w-sm flex-col justify-center px-7 py-20">
+    <div className="relative min-h-screen bg-dark-bg text-white antialiased selection:bg-white selection:text-black">
+      {/* Animated smoke background */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <SmokeBackground smokeColor="#ff2d2d" />
+        {/* Darkening overlay to keep foreground text readable */}
+        <div className="absolute inset-0 bg-dark-bg/60" />
+      </div>
+
+      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-sm flex-col justify-center px-7 py-20">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,23 +108,23 @@ const App: React.FC = () => {
             <span className="absolute bottom-2 left-[3px] top-2 w-px bg-white/10" />
             <div className="space-y-4">
               <div className="relative">
-                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-accent ring-4 ring-dark-bg" />
-                <p className="font-mono text-xs text-accent">2026&ndash;Now</p>
+                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-white ring-4 ring-dark-bg" />
+                <p className="font-mono text-xs text-white">2026&ndash;Now</p>
                 <p className="mt-0.5 text-sm leading-relaxed text-white/75">
                   Building AI-native companies, Cursor Ambassador
                 </p>
               </div>
               <div className="relative">
-                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-accent ring-4 ring-dark-bg" />
-                <p className="font-mono text-xs text-accent">2023&ndash;2026</p>
+                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-white ring-4 ring-dark-bg" />
+                <p className="font-mono text-xs text-white">2023&ndash;2026</p>
                 <p className="mt-0.5 text-sm leading-relaxed text-white/75">
                   First Engineering Hire &rarr; Ex Co-Founder &amp; CTO at Outtalent
                   (Kyrgyzstan&apos;s first YC-backed startup)
                 </p>
               </div>
               <div className="relative">
-                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-accent ring-4 ring-dark-bg" />
-                <p className="font-mono text-xs text-accent">2019&ndash;2023</p>
+                <span className="absolute -left-4 top-[6px] h-[7px] w-[7px] rounded-full bg-white ring-4 ring-dark-bg" />
+                <p className="font-mono text-xs text-white">2019&ndash;2023</p>
                 <p className="mt-0.5 text-sm leading-relaxed text-white/75">
                   30M+ Roblox game plays &middot; 1M+ MAU
                 </p>
@@ -133,7 +141,7 @@ const App: React.FC = () => {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3.5 border-t border-white/[0.06] py-3.5 text-white/70 transition-colors duration-200 last:border-b hover:text-white"
               >
-                <span className="text-white/40 transition-colors duration-200 group-hover:text-accent [&>svg]:h-[18px] [&>svg]:w-[18px]">
+                <span className="text-white/40 transition-colors duration-200 group-hover:text-white [&>svg]:h-[18px] [&>svg]:w-[18px]">
                   {p.icon}
                 </span>
                 <span className="text-[15px]">{p.name}</span>
